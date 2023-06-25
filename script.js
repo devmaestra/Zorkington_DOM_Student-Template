@@ -12,25 +12,251 @@
         - index.html should be running in your browser through the build process.
             - use your browsers console throughout testing.
 */
+// Wanting to change the "quick notes text" inside button. 
+// let notesBtn = document.getElementsByClassName("btn btn-sm btn-primary");
+// notesBtn.textContent = "Read Me First"; 
+let playerInput = document.getElementById("user-input");
+let currentRoom = "Main Lobby";
+let currentInventory = {
+    inventory: [],
+}
+
 
 export const gameDetails = {   
     title: 'The Schermerhorn Symphony Center Game',
     desc: 'Welcome to the world of... here are some quick rules & concepts...',
     author: 'Laura Shaw',
     cohort: 'SBPT-2023',
-    startingRoomDescription: 'What you see before you is...',
+    startingRoomDescription: "You are standing on an Italian marble floor in the Main Lobby of the Schermerhorn Symphony Center.  There is a concert tonight, and you want to attend but you don't have a ticket to enter. You see a Box Office to the West, an Usher blocking the entrance to the Concert Hall to the South, and the East Lobby to the East. The usher is holding a sign.",
     playerCommands: [
         // replace these with your games commands as needed
-        'Inspect', 'View', 'Look', 'Pickup', 'Listen to', 'Drop', 'Play'
+        'INSPECT', 'GIVE', 'READ', 'PICKUP', 'ENTER', 'DROP', 
     ]
     // Commands are basic things that a player can do throughout the game besides possibly moving to another room. This line will populate on the footer of your game for players to reference. 
     // This shouldn't be more than 6-8 different commands.
 }
+// let playerInput = document.getElementById("user-input");
+/* Rooms:
+    - Main Lobby
+    - East Lobby
+    - Green Room
+    - Concert Hall
+    - Box Office 
+    - West Lobby
+    - Courtyard
+*/
 
-// Your code here
+class Room {
+    constructor(name, description, directions, inventory, isLocked, sign) {
+        this.name = name,
+            this.description = description,
+            this.directions = directions,
+            this.inventory = inventory,
+            this.sign = sign,
+            this.isLocked = isLocked
+} 
+}
 
-export const domDisplay = (playerInput) => {
-    /* 
+const listInventory = () => {
+
+    let itemsToTake = {
+        "Main Lobby": [],
+        "East Lobby": ["silverCoin"],
+        "Green Room": ["violin", "goldenCoin"],
+        "Box Office": ["ticket"],
+        "West Lobby": ["goldenCoin2", "pastry"],
+        "Courtyard": ["silverCoin2", "flower"],
+        "Concert Hall": ["program"]
+    }
+
+    console.log(itemsToTake);
+
+    return [itemsToTake];
+}
+
+listInventory();
+
+mainLobby = "Main Lobby";
+
+
+
+const mainLobby = new Room(
+    "Main Lobby",
+    "You are standing on an Italian marble floor in the Main Lobby of the Schermerhorn Symphony Center.  There is a concert tonight, and you want to attend but you don't have a ticket to enter. You see a Box Office to the West, an Usher blocking the entrance to the Concert Hall to the South, and an East Lobby to the East. The usher is holding a sign.",
+    ["east", "south", "west"],  //anything else is a locked door (default/else)      
+    [],
+    true,
+    "Welcome to the Main Lobby"
+); //vvvvv below is a work in progress with this test vvvvv
+//     "East Lobby": { 
+//         description: "You are standing in the East Lobby of the Schermerhorn Symphony Center. You see door into another room to the South, a the Main Lobby to the West. There is a Wooden Box on the floor.",
+//         "directions": {
+//             "South": "Green Room",
+//             "West": "Main Lobby",
+//             "East": "Locked Doors",
+//             "North": "Locked Doors"
+//         },
+//         inventory: [silverCoin],
+//         sign: false
+//     },
+//     "Green Room": { 
+//         description: "You are standing in the Green Room.  You see a couch, a violin, a painting of Kenneth Schermerhorn, and a window. To the North is the East lobby.",
+//         directions: {
+//             "South": "Locked Doors",
+//             "West": "Locked Doors",
+//             "East": "Locked Doors",
+//             "North": "East Lobby"
+//         },
+//         inventory: [violin, goldenCoin],
+//         sign: false
+//     },
+//     "Box Office": {
+//         "description": "You are standing at the box office window. There is a sign on the glass. You smell food and coffee nearby.  You see a restaurant in the West Lobby to the South, the Main Lobby is to the East, and a Courtyard with a fountain is to the West.",
+//         directions: {
+//             "South": "West Lobby",
+//             "West": "Courtyard",
+//             "East": "Main Lobby",
+//             "North": "Locked Doors"
+//         },
+//         inventory: [ticket],
+//         sign: true       
+//     },
+//     "West Lobby": {
+//         description: "You are standing in the West Lobby.  You see a restaurant counter selling coffee and pastries. Are you hungry?  You see a sign at the counter.  You also see a fountain in the courtyard to the West and a Box Office to the North.",
+//         directions: {
+//             "South": "Locked Doors",
+//             "West": "Courtyard",
+//             "East": "Locked Doors",
+//             "North": "Box Office"
+//         },
+//         inventory: [goldCoin2, pastry],
+//         sign: true
+//     },
+//     "Courtyard": {
+//         description: "You have entered the beautiful courtyard. You hear the water flowing through the fountain, you see a silver shine in the fountain, and you see blooming rose bushes.",
+//         directions: {
+//             "South": "Locked Doors",
+//             "West": "Locked Gate",
+//             "East": "West Lobby",
+//             "North": "Locked Gate"
+//         },
+//         inventory: [flower, silverCoin2],
+//         sign: false
+//     },
+    
+//     "Concert Hall": {
+//         description: "Congratulations! You made it to the concert on time! You hear musicians warming up and make your way to have a seat in the front row. Enjoy the concert! Following the concert, please exit to the North.",
+//         directions: {
+//             "North": "Main Lobby"
+//         },
+//         inventory: [program],
+//         sign: true
+//     }
+// }
+
+
+
+
+
+
+
+// let rooms = {
+//     "Main Lobby": {
+//         description: "You are standing on an Italian marble floor in the Main Lobby of the Schermerhorn Symphony Center.  There is a concert tonight, and you want to attend but you don't have a ticket to enter. You see a Box Office to the West, an Usher blocking the entrance to the Concert Hall to the South, and an East Lobby to the East. The usher is holding a sign.",
+//         directions: {
+//             "East": "East Lobby",
+//             "South": "Concert Hall",
+//             "West": "Box Office"
+//         },
+//         inventory: [],
+//         sign: true
+        
+//     },
+//     "East Lobby": { 
+//         description: "You are standing in the East Lobby of the Schermerhorn Symphony Center. You see door into another room to the South, a the Main Lobby to the West. There is a Wooden Box on the floor.",
+//         "directions": {
+//             "South": "Green Room",
+//             "West": "Main Lobby",
+//             "East": "Locked Doors",
+//             "North": "Locked Doors"
+//         },
+//         inventory: [silverCoin],
+//         sign: false
+//     },
+//     "Green Room": { 
+//         description: "You are standing in the Green Room.  You see a couch, a violin, a painting of Kenneth Schermerhorn, and a window. To the North is the East lobby.",
+//         directions: {
+//             "South": "Locked Doors",
+//             "West": "Locked Doors",
+//             "East": "Locked Doors",
+//             "North": "East Lobby"
+//         },
+//         inventory: [violin, goldenCoin],
+//         sign: false
+//     },
+//     "Box Office": {
+//         "description": "You are standing at the box office window. There is a sign on the glass. You smell food and coffee nearby.  You see a restaurant in the West Lobby to the South, the Main Lobby is to the East, and a Courtyard with a fountain is to the West.",
+//         directions: {
+//             "South": "West Lobby",
+//             "West": "Courtyard",
+//             "East": "Main Lobby",
+//             "North": "Locked Doors"
+//         },
+//         inventory: [ticket],
+//         sign: true       
+//     },
+//     "West Lobby": {
+//         description: "You are standing in the West Lobby.  You see a restaurant counter selling coffee and pastries. Are you hungry?  You see a sign at the counter.  You also see a fountain in the courtyard to the West and a Box Office to the North.",
+//         directions: {
+//             "South": "Locked Doors",
+//             "West": "Courtyard",
+//             "East": "Locked Doors",
+//             "North": "Box Office"
+//         },
+//         inventory: [goldCoin2, pastry],
+//         sign: true
+//     },
+//     "Courtyard": {
+//         description: "You have entered the beautiful courtyard. You hear the water flowing through the fountain, you see a silver shine in the fountain, and you see blooming rose bushes.",
+//         directions: {
+//             "South": "Locked Doors",
+//             "West": "Locked Gate",
+//             "East": "West Lobby",
+//             "North": "Locked Gate"
+//         },
+//         inventory: [flower, silverCoin2],
+//         sign: false
+//     },
+    
+//     "Concert Hall": {
+//         description: "Congratulations! You made it to the concert on time! You hear musicians warming up and make your way to have a seat in the front row. Enjoy the concert! Following the concert, please exit to the North.",
+//         directions: {
+//             "North": "Main Lobby"
+//         },
+//         inventory: [program],
+//         sign: true
+//     }
+// }
+
+
+
+
+ // Your code here
+
+
+
+
+
+
+
+
+export const domDisplay = (playerInput) => { 
+
+    // let rooms = { //if else statements?
+
+    // }
+
+/*
         TODO: for students
         - This function must return a string. 
         - This will be the information that is displayed within the browsers game interface above the users input field.

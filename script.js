@@ -35,7 +35,8 @@ export const gameDetails = {
     // Commands are basic things that a player can do throughout the game besides possibly moving to another room. This line will populate on the footer of your game for players to reference. 
     // This shouldn't be more than 6-8 different commands.
 }
-// let playerInput = document.getElementById("user-input");
+// playerInput = document.getElementById("user-input");
+
 /* Rooms:
     - Main Lobby
     - East Lobby
@@ -47,13 +48,13 @@ export const gameDetails = {
 */
 
 class Room {
-    constructor(name, description, directions, inventory, isLocked, sign) {
+    constructor(name, description, directions, inventory, sign) {
         this.name = name,
             this.description = description,
             this.directions = directions,
             this.inventory = inventory,
-            this.sign = sign,
-            this.isLocked = isLocked
+            this.sign = sign
+            // this.isLocked = isLocked
 } 
 }
 
@@ -76,83 +77,67 @@ const listInventory = () => {
 
 listInventory();
 
+// room name dictionary
 mainLobby = "Main Lobby";
+eastLobby = "East Lobby";
+greenRoom = "Green Room";
+boxOffice = "Box Office";
+westLobby = "West Lobby";
+courtyard = "Courtyard";
+concertHall = "Concert Hall";
 
 
 
 const mainLobby = new Room(
     "Main Lobby",
     "You are standing on an Italian marble floor in the Main Lobby of the Schermerhorn Symphony Center.  There is a concert tonight, and you want to attend but you don't have a ticket to enter. You see a Box Office to the West, an Usher blocking the entrance to the Concert Hall to the South, and an East Lobby to the East. The usher is holding a sign.",
-    ["east", "south", "west"],  //anything else is a locked door (default/else)      
+    ["east", "south", "west"],  //anything else is a locked door (default/else??)      
     [],
     true,
-    "Welcome to the Main Lobby"
-); //vvvvv below is a work in progress with this test vvvvv
-//     "East Lobby": { 
-//         description: "You are standing in the East Lobby of the Schermerhorn Symphony Center. You see door into another room to the South, a the Main Lobby to the West. There is a Wooden Box on the floor.",
-//         "directions": {
-//             "South": "Green Room",
-//             "West": "Main Lobby",
-//             "East": "Locked Doors",
-//             "North": "Locked Doors"
-//         },
-//         inventory: [silverCoin],
-//         sign: false
-//     },
-//     "Green Room": { 
-//         description: "You are standing in the Green Room.  You see a couch, a violin, a painting of Kenneth Schermerhorn, and a window. To the North is the East lobby.",
-//         directions: {
-//             "South": "Locked Doors",
-//             "West": "Locked Doors",
-//             "East": "Locked Doors",
-//             "North": "East Lobby"
-//         },
-//         inventory: [violin, goldenCoin],
-//         sign: false
-//     },
-//     "Box Office": {
-//         "description": "You are standing at the box office window. There is a sign on the glass. You smell food and coffee nearby.  You see a restaurant in the West Lobby to the South, the Main Lobby is to the East, and a Courtyard with a fountain is to the West.",
-//         directions: {
-//             "South": "West Lobby",
-//             "West": "Courtyard",
-//             "East": "Main Lobby",
-//             "North": "Locked Doors"
-//         },
-//         inventory: [ticket],
-//         sign: true       
-//     },
-//     "West Lobby": {
-//         description: "You are standing in the West Lobby.  You see a restaurant counter selling coffee and pastries. Are you hungry?  You see a sign at the counter.  You also see a fountain in the courtyard to the West and a Box Office to the North.",
-//         directions: {
-//             "South": "Locked Doors",
-//             "West": "Courtyard",
-//             "East": "Locked Doors",
-//             "North": "Box Office"
-//         },
-//         inventory: [goldCoin2, pastry],
-//         sign: true
-//     },
-//     "Courtyard": {
-//         description: "You have entered the beautiful courtyard. You hear the water flowing through the fountain, you see a silver shine in the fountain, and you see blooming rose bushes.",
-//         directions: {
-//             "South": "Locked Doors",
-//             "West": "Locked Gate",
-//             "East": "West Lobby",
-//             "North": "Locked Gate"
-//         },
-//         inventory: [flower, silverCoin2],
-//         sign: false
-//     },
+); 
+const eastLobby = new Room(
+        "East Lobby",
+        "You are standing in the East Lobby of the Schermerhorn Symphony Center. You see door into another room to the South, a the Main Lobby to the West. There is a Wooden Box on the floor.",
+        ["south", "west"],
+        ["silverCoin"],
+        false,
+);
+const greenRoom = new Room( 
+        "Green Room",
+        "You are standing in the Green Room.  You see a couch, a violin, a painting of Kenneth Schermerhorn, and a window. To the North is the East lobby.",
+        ["east"],
+        ["violin", "goldenCoin"],
+        false,
+);
+const boxOffice = new Room(
+        "Box Office",
+        "You are standing at the box office window. There is a sign on the glass. You smell food and coffee nearby.  You see a restaurant in the West Lobby to the South, the Main Lobby is to the East, and a Courtyard with a fountain is to the West.",
+        ["south", "west", "east"],
+        ["ticket"],
+        true,       
+);
+const westLobby = new Room(
+        "West Lobby",
+        "You are standing in the West Lobby.  You see a restaurant counter selling coffee and pastries. Are you hungry?  You see a sign at the counter.  You also see a fountain in the courtyard to the West and a Box Office to the North.",
+        ["west", "north"],
+        ["goldCoin2", "pastry"],
+        true,
+);
+const courtyard = new Room(
+        "Courtyard",
+        "You have entered the beautiful courtyard. You hear the water flowing through the fountain, you see a silver shine in the fountain, and you see blooming rose bushes.",
+        ["east"]
+        ["flower", "silverCoin2"],
+        false,
+);
     
-//     "Concert Hall": {
-//         description: "Congratulations! You made it to the concert on time! You hear musicians warming up and make your way to have a seat in the front row. Enjoy the concert! Following the concert, please exit to the North.",
-//         directions: {
-//             "North": "Main Lobby"
-//         },
-//         inventory: [program],
-//         sign: true
-//     }
-// }
+const concertHall = new Room(
+        "Concert Hall",
+        "Congratulations! You made it to the concert on time! You hear musicians warming up and make your way to have a seat in the front row. Enjoy the concert! Following the concert, please exit to the North.",
+        ["north"],
+        ["program"],
+        true
+);
 
 
 
@@ -252,9 +237,8 @@ const mainLobby = new Room(
 
 export const domDisplay = (playerInput) => { 
 
-    // let rooms = { //if else statements?
+playerCommands = commandInp
 
-    // }
 
 /*
         TODO: for students

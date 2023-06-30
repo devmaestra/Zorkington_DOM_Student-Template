@@ -12,40 +12,10 @@
         - index.html should be running in your browser through the build process.
             - use your browsers console throughout testing.
 */
-// Wanting to change the "quick notes text" inside button. 
+// // Wanting to change the "quick notes text" inside button. 
 // let notesBtn = document.getElementsByClassName("btn btn-sm btn-primary");
 // notesBtn.textContent = "Read Me First"; 
-let playerInput = document.getElementById("user-input");
-let currentRoom = "Main Lobby";
-let currentInventory = {
-    inventory: [],
-}
-
-
-export const gameDetails = {   
-    title: 'The Schermerhorn Symphony Center Game',
-    desc: 'Welcome to the world of... here are some quick rules & concepts...',
-    author: 'Laura Shaw',
-    cohort: 'SBPT-2023',
-    startingRoomDescription: "You are standing on an Italian marble floor in the Main Lobby of the Schermerhorn Symphony Center.  There is a concert tonight, and you want to attend but you don't have a ticket to enter. You see a Box Office to the West, an Usher blocking the entrance to the Concert Hall to the South, and the East Lobby to the East. The usher is holding a sign.",
-    playerCommands: [
-        // replace these with your games commands as needed
-        'INSPECT', 'GIVE', 'READ', 'PICKUP', 'ENTER', 'DROP', 
-    ]
-    // Commands are basic things that a player can do throughout the game besides possibly moving to another room. This line will populate on the footer of your game for players to reference. 
-    // This shouldn't be more than 6-8 different commands.
-}
-// playerInput = document.getElementById("user-input");
-
-/* Rooms:
-    - Main Lobby
-    - East Lobby
-    - Green Room
-    - Concert Hall
-    - Box Office 
-    - West Lobby
-    - Courtyard
-*/
+// let playerInput = document.getElementById("user-input");
 
 class Room {
     constructor(name, description, directions, inventory, sign) {
@@ -54,39 +24,8 @@ class Room {
             this.directions = directions,
             this.inventory = inventory,
             this.sign = sign
-            // this.isLocked = isLocked
 } 
 }
-
-const listInventory = () => {
-
-    let itemsToTake = {
-        "Main Lobby": [],
-        "East Lobby": ["silverCoin"],
-        "Green Room": ["violin", "goldenCoin"],
-        "Box Office": ["ticket"],
-        "West Lobby": ["goldenCoin2", "pastry"],
-        "Courtyard": ["silverCoin2", "flower"],
-        "Concert Hall": ["program"]
-    }
-
-    console.log(itemsToTake);
-
-    return [itemsToTake];
-}
-
-listInventory();
-
-// room name dictionary
-mainLobby = "Main Lobby";
-eastLobby = "East Lobby";
-greenRoom = "Green Room";
-boxOffice = "Box Office";
-westLobby = "West Lobby";
-courtyard = "Courtyard";
-concertHall = "Concert Hall";
-
-
 
 const mainLobby = new Room(
     "Main Lobby",
@@ -140,6 +79,81 @@ const concertHall = new Room(
 );
 
 
+let locationStates = {
+    mainLobby: [eastLobby, boxOffice],
+    eastLobby: [mainLobby, greenRoom],
+    greenRoom: [eastLobby],
+    boxOffice: [mainLobby, westLobby],
+    westLobby: [boxOffice, courtyard],
+    courtyard: [westLobby]
+};
+
+// mainLobby = "Main Lobby";
+// eastLobby = "East Lobby";
+// greenRoom = "Green Room";
+// boxOffice = "Box Office";
+// westLobby = "West Lobby";
+// courtyard = "Courtyard";
+// concertHall = "Concert Hall";
+
+let currentRoom = mainLobby;
+// console.log("You are currently in the " + currentRoom);
+// let currentInventory = {
+//     inventory: [],
+// }
+
+
+export const gameDetails = {   
+    title: 'The Schermerhorn Symphony Center Game',
+    desc: '',
+    author: 'Laura Shaw',
+    cohort: 'SBPT-2023',
+    startingRoomDescription: "You are standing on an Italian marble floor in the Main Lobby of the Schermerhorn Symphony Center.  There is a concert tonight, and you want to attend but you don't have a ticket to enter. You see a Box Office to the West, an Usher blocking the entrance to the Concert Hall to the South, and the East Lobby to the East. The usher is holding a sign.",
+    playerCommands: [
+        'INSPECT', 'GIVE', 'READ', 'PICKUP', 'ENTER', 'DROP', 
+    ]
+    // Commands are basic things that a player can do throughout the game besides possibly moving to another room. This line will populate on the footer of your game for players to reference. 
+    // This shouldn't be more than 6-8 different commands.
+};
+
+/* Rooms:
+    - Main Lobby
+    - East Lobby
+    - Green Room
+    - Concert Hall
+    - Box Office 
+    - West Lobby
+    - Courtyard
+*/
+
+// startingRoomDescription = mainLobby.description;
+
+
+export const domDisplay = (playerInput) => { 
+    let playerCommands = commandInput
+};
+// playerCommands = commandInput
+
+
+
+const listInventory = () => {
+
+    let itemsToTake = {
+        "Main Lobby": [],
+        "East Lobby": ["silverCoin"],
+        "Green Room": ["violin", "goldenCoin"],
+        "Box Office": ["ticket"],
+        "West Lobby": ["goldenCoin2", "pastry"],
+        "Courtyard": ["silverCoin2", "flower"],
+        "Concert Hall": ["program"]
+    }
+
+    console.log(itemsToTake);
+
+    return [itemsToTake];
+}
+
+listInventory();
 
 
 
@@ -235,9 +249,9 @@ const concertHall = new Room(
 
 
 
-export const domDisplay = (playerInput) => { 
+// export const domDisplay = (playerInput) => { 
 
-playerCommands = commandInp
+// playerCommands = commandInput
 
 
 /*
@@ -272,4 +286,4 @@ playerCommands = commandInp
     */
 
     // Your code here
-} 
+

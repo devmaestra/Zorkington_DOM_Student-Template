@@ -105,7 +105,7 @@ let currentRoom = mainLobby;
 
 export const gameDetails = {   
     title: 'The Schermerhorn Symphony Center Game',
-    desc: '',
+    desc: 'Welcome to the Schermerhorn Symphony Center, home of the Nashville Symphony Orchestra.  You are attending the concert tonight, but do not have a ticket!  Travel through the rooms, inspect items, read signs, etc until you find what you need for your ticket to enter! Good luck!',
     author: 'Laura Shaw',
     cohort: 'SBPT-2023',
     startingRoomDescription: "You are standing on an Italian marble floor in the Main Lobby of the Schermerhorn Symphony Center.  There is a concert tonight, and you want to attend but you don't have a ticket to enter. You see a Box Office to the West, an Usher blocking the entrance to the Concert Hall to the South, and the East Lobby to the East. The usher is holding a sign.",

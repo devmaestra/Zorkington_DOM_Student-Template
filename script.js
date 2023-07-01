@@ -19,7 +19,7 @@
 
 class Room {
     constructor(name, description, directions, inventory, sign) {
-        this.name = name,
+            this.name = name,
             this.description = description,
             this.directions = directions,
             this.inventory = inventory,
@@ -96,12 +96,15 @@ let locationStates = {
 // courtyard = "Courtyard";
 // concertHall = "Concert Hall";
 
-let currentRoom = mainLobby;
+let currentRoom = "mainLobby";
 // console.log("You are currently in the " + currentRoom);
 // let currentInventory = {
 //     inventory: [],
 // }
 
+
+
+// used notes from 05_ state to help on this.
 
 export const gameDetails = {   
     title: 'The Schermerhorn Symphony Center Game',
@@ -109,9 +112,7 @@ export const gameDetails = {
     author: 'Laura Shaw',
     cohort: 'SBPT-2023',
     startingRoomDescription: "You are standing on an Italian marble floor in the Main Lobby of the Schermerhorn Symphony Center.  There is a concert tonight, and you want to attend but you don't have a ticket to enter. You see a Box Office to the West, an Usher blocking the entrance to the Concert Hall to the South, and the East Lobby to the East. The usher is holding a sign.",
-    playerCommands: [
-        'INSPECT', 'GIVE', 'READ', 'PICKUP', 'ENTER', 'DROP', 
-    ]
+    playerCommands: ['INSPECT', 'GIVE', 'READ', 'PICKUP', 'ENTER', 'DROP']
     // Commands are basic things that a player can do throughout the game besides possibly moving to another room. This line will populate on the footer of your game for players to reference. 
     // This shouldn't be more than 6-8 different commands.
 };
@@ -130,11 +131,37 @@ export const gameDetails = {
 
 
 export const domDisplay = (playerInput) => { 
-    let playerCommands = commandInput
+    let playerCommands = playerInput.toLowerCase();
+
+    if (playerCommands.includes('east')) {
+        // function moveRoom() ?
+        return(eastLobby.description);
+    } else if (playerCommands.includes('west')) {
+        return(boxOffice.description);
+        // console.log('went west');
+    } else if (playerCommands.includes('south')) {
+        return("The Usher is holding a sign.  Would you like to read it?");
+        // console.log('went south'); //works
+    } else {
+        return ("This is an unrecognized command");
+    }
 };
 // playerCommands = commandInput
 
+function moveRoom(newRoom) {
+    let validRooms = locationStates.currentRoom;
+    let valid = validRooms[newRoom];
 
+    if(valid.includes(newRoom)) {
+        currentRoom = newRoom;
+        return(currentRoom);
+        // console.log(currentRoom);
+    } else {
+        return(`You may not move from the ${currentRoom} to ${newRoom}.`);
+    }
+}
+
+// moveRoom('westLobby');
 
 const listInventory = () => {
 
@@ -154,6 +181,12 @@ const listInventory = () => {
 }
 
 listInventory();
+
+let myInventory = "my inventory"
+
+function checkInventory() {
+
+}
 
 
 

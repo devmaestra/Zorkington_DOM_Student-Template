@@ -111,10 +111,7 @@ export const gameDetails = {
     author: 'Laura Shaw',
     cohort: 'SBPT-2023',
     startingRoomDescription: "You are standing on an Italian marble floor in the Main Lobby of the Schermerhorn Symphony Center.  There is a concert tonight, and you want to attend but you don't have a ticket to enter. You see a Box Office to the West, an Usher blocking the entrance to the Concert Hall to the South, and the East Lobby to the East. The usher is holding a sign.",
-    playerCommands: ['INSPECT', 'GIVE', 'READ', 'PICKUP', 'ENTER', 'DROP'] {
-        "INSPECT": ["inspect", "eat", "look"],
-        "GIVE" : ["gift", "pay"]
-    }
+    playerCommands: ['INSPECT', 'GIVE', 'READ', 'PICKUP', 'ENTER', 'DROP'] 
     // Commands are basic things that a player can do throughout the game besides possibly moving to another room. This line will populate on the footer of your game for players to reference. 
     // This shouldn't be more than 6-8 different commands.
 };
@@ -136,7 +133,17 @@ export const domDisplay = (playerInput) => {
     playerInput = playerInput.toLowerCase();
     playerCommands = playerCommands.toLowerCase();
 
+    const playerCommands = {
+        "INSPECT": ["inspect", "search", "view", "look", "eat", "investigate"],
+        "GIVE": ["give", "pay", "gift", "hand", "giveaway", "place"],
+        "READ": ["read", "sign"],
+        "PICKUP": ["pickup", "pick", "up", "take", "steal", "seize", "fetch", "collect", "gather"],
+        "ENTER": ["enter", "go", "step"], 
+        "DROP": ["drop", "remove", "release", "let go"]
+    };
+
     let currentRoom = "mainLobby";
+
 
     class Room {
         constructor(name, description, directions, inventory, sign) {
